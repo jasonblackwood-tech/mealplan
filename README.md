@@ -9,7 +9,7 @@ This is a tiny, student-friendly web app that:
   - “Macro limits” (saturated fat and sugars shown as % of energy)
 
 ## What it stores
-Nothing on a server. It stores targets and the meal plan **only in the browser’s localStorage** (the API key is pasted into `app.js`).
+Nothing on a server. It stores targets and the meal plan **only in the browser’s localStorage**
 
 ## Files
 - `index.html`
