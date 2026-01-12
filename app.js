@@ -8,7 +8,7 @@ const LS_KEY = "g4_mealplanner_v1";
 
 // TEACHER SETUP: paste your USDA FoodData Central API key here.
 // NOTE: This key will be visible to anyone who can view the page source.
-const FDC_API_KEY = "eIu9gprEg6dqo88s75oVuJM3JFA1Oldg11MlTx5a";
+const FDC_API_KEY = "PASTE_KEY_HERE";
 
 const DEFAULT_LIMITS = {
   // For Grade 4 (ages 9–10), these are typically aligned with the 9–13 life stage in DRI tables.
@@ -527,9 +527,12 @@ function renderPlan(){
     }else{
       list.forEach((it, idx) => {
         const li = document.createElement("li");
+        const amt = (it.type === "water")
+          ? `${Math.round(it.ml)} mL`
+          : `${Math.round(it.grams)} g`;
         li.innerHTML = `
           <strong>${escapeHtml(it.name)}</strong>
-          ${it.type === "water" ? `<span class="small">(${Math.round(it.ml)} mL)</span>` : `<span class="small">(${Math.round(it.grams)} g)</span>`}
+          <span class="small">(${amt})</span>
           <button class="btn ghost" type="button" style="padding:6px 10px;margin-left:8px;">Remove</button>
         `;
         li.querySelector("button").addEventListener("click", () => {
