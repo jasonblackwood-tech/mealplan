@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Grade 4 Meal Plan – Nutrition & Safety Check</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="wrap">
+    <h1>1‑Day Meal Plan Checker</h1>
+    <p class="sub">
+      Build a one‑day meal plan and check it against your targets (from Health Canada’s DRI Calculator).
+      This tool does not save personal data and runs in your browser.
+    </p>
+    <p class="links">
+      <a href="https://health-infobase.canada.ca/nutrition/dietary-reference-intakes-calculator/" target="_blank" rel="noopener">Open Health Canada DRI Calculator</a>
+      <span class="sep">•</span>
+      <button id="printBtn" class="btn ghost" type="button">Print summary</button>
+    </p>
+  </header>
+
+  <main class="wrap grid">
+    <section class="card">
+      <h2>Setup</h2>
+
+      <p class="hint">Teacher setup: the USDA FoodData Central API key is built into this app (students do not enter it).</p>
+
+      <hr />
+
+      <h3>My Targets (from Health Canada)</h3>
+      <p class="hint">Type the numbers you got from the DRI calculator. If you’re not sure, leave it blank.</p>
+
+      <div class="targets">
+        <div class="field">
+          <label for="t_cal">Energy (kcal)</label>
+          <input id="t_cal" type="number" min="0" step="1" />
+        </div>
+
+        <div class="field">
+          <label for="t_water">Water (mL)</label>
+          <input id="t_water" type="number" min="0" step="10" />
+        </div>
+
+        <div class="field">
+          <label for="t_protein">Protein (g)</label>
+          <input id="t_protein" type="number" min="0" step="0.1" />
+        </div>
+        <div class="field">
+          <label for="t_carbs">Carbs (g)</label>
+          <input id="t_carbs" type="number" min="0" step="0.1" />
+        </div>
+        <div class="field">
+          <label for="t_fat">Total fat (g)</label>
+          <input id="t_fat" type="number" min="0" step="0.1" />
+        </div>
+
+        <h3>Micronutrient Targets (required)</h3>
+      <p class="hint">These are required for this assignment. Copy them from the Health Canada calculator.</p>
+      <div class="targets2">
+            <div class="field"><label for="t_vita">Vitamin A (µg RAE)</label><input id="t_vita" type="number" min="0" step="1" /></div>
+            <div class="field"><label for="t_vitd">Vitamin D (µg)</label><input id="t_vitd" type="number" min="0" step="0.1" /></div>
+            <div class="field"><label for="t_calcium">Calcium (mg)</label><input id="t_calcium" type="number" min="0" step="1" /></div>
+            <div class="field"><label for="t_iron">Iron (mg)</label><input id="t_iron" type="number" min="0" step="0.1" /></div>
+            <div class="field"><label for="t_zinc">Zinc (mg)</label><input id="t_zinc" type="number" min="0" step="0.1" /></div>
+            <div class="field"><label for="t_sodium">Sodium (mg)</label><input id="t_sodium" type="number" min="0" step="1" /></div>
+          </div>
+
+        <div class="row">
+          <button id="saveTargetsBtn" class="btn" type="button">Save targets</button>
+          <button id="clearAllBtn" class="btn danger ghost" type="button">Clear all</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Add Foods</h2>
+
+      <div class="field">
+        <label for="meal">Meal</label>
+        <select id="meal">
+          <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
+          <option value="Snacks">Snacks</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="query">Search for a food (whole foods or branded)</label>
+        <div class="row">
+          <input id="query" type="text" placeholder="Try: banana, Cheerios, milk, pizza…" />
+          <button id="searchBtn" class="btn" type="button">Search</button>
+        </div>
+        <p class="hint">Tip: branded foods work best when the label has a serving size in grams.</p>
+      </div>
+
+      
+      <div class="row">
+        <button id="addWaterBtn" class="btn ghost" type="button">Add water</button>
+        <span class="small">Track plain water separately (mL).</span>
+      </div>
+
+      <div id="results" class="results" aria-live="polite"></div>
+    </section>
+
+    <section class="card">
+      <h2>My Day of Food</h2>
+      <div id="plan" class="plan"></div>
+    </section>
+
+    <section class="card">
+      <h2>Daily Check</h2>
+      <p class="hint">
+        “Limits” are everyday caps (like added sugar and saturated fat). “UL” means a tolerable upper intake level for some nutrients.
+      </p>
+      <div id="check" class="check"></div>
+      <div class="row">
+        <button id="exportBtn" class="btn ghost" type="button">Copy printable summary</button>
+      </div>
+      <textarea id="exportArea" class="export" readonly></textarea>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <p>
+      Data: USDA FoodData Central (CC0). This classroom tool is for learning, not medical advice.
+    </p>
+  </footer>
+
+  <dialog id="amountDlg">
+    <form method="dialog" class="dlg">
+      <h3 id="dlgTitle">Add item</h3>
+
+      <div class="field">
+        <label>How do you want to enter the amount?</label>
+        <div class="row">
+          <label class="radio"><input type="radio" name="amtMode" value="portion" checked /> Serving (if available)</label>
+          <label class="radio"><input type="radio" name="amtMode" value="grams" /> Grams</label>
+        </div>
+      </div>
+
+      <div id="portionBox" class="field">
+        <label for="portionSel">Choose a serving</label>
+        <select id="portionSel"></select>
+        <div class="row">
+          <label class="small" for="portionCount">How many?</label>
+          <input id="portionCount" type="number" min="0" step="0.25" value="1" />
+        </div>
+        <p class="hint" id="portionHint"></p>
+      </div>
+
+      <div id="gramsBox" class="field hidden">
+        <label for="grams">Grams</label>
+        <input id="grams" type="number" min="0" step="1" value="100" />
+      </div>
+
+      <menu class="row end">
+        <button class="btn ghost" value="cancel">Cancel</button>
+        <button id="dlgAddBtn" class="btn" value="ok">Add</button>
+      </menu>
+    </form>
+  </dialog>
+
+
+  <dialog id="waterDlg">
+    <form method="dialog" class="dlg">
+      <h3>Add water</h3>
+
+      <div class="field">
+        <label for="waterMl">How much water did you drink? (mL)</label>
+        <input id="waterMl" type="number" min="0" step="10" value="250" />
+        <p class="hint">Tip: a small cup is often around 250 mL.</p>
+      </div>
+
+      <menu class="row end">
+        <button class="btn ghost" value="cancel">Cancel</button>
+        <button class="btn" value="ok">Add</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
