@@ -8,7 +8,7 @@ const LS_KEY = "g4_mealplanner_v1";
 
 // TEACHER SETUP: paste your USDA FoodData Central API key here.
 // NOTE: This key will be visible to anyone who can view the page source.
-const FDC_API_KEY = "PASTE_KEY_HERE";
+const FDC_API_KEY = "eIu9gprEg6dqo88s75oVuJM3JFA1Oldg11MlTx5a";
 
 const DEFAULT_LIMITS = {
   // For Grade 4 (ages 9–10), these are typically aligned with the 9–13 life stage in DRI tables.
