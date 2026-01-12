@@ -11,6 +11,7 @@
     <h1>1‑Day Meal Plan Checker</h1>
     <p class="sub">
       Build a one‑day meal plan and check it against your targets (from Health Canada’s DRI Calculator).
+      This tool does not save personal data and runs in your browser.
     </p>
     <p class="links">
       <a href="https://health-infobase.canada.ca/nutrition/dietary-reference-intakes-calculator/" target="_blank" rel="noopener">Open Health Canada DRI Calculator</a>
@@ -21,10 +22,14 @@
 
   <main class="wrap grid">
     <section class="card">
-      <h2>Setup Your Dietary Needs</h2>
+      <h2>Setup</h2>
+
+      <p class="hint">Teacher setup: the USDA FoodData Central API key is built into this app (students do not enter it).</p>
+
+      <hr />
 
       <h3>My Targets (from Health Canada)</h3>
-      <p class="hint">Type the numbers you got from the Health Canada DRI calculator. If you’re not sure, leave it blank.</p>
+      <p class="hint">Type the numbers you got from the DRI calculator. If you’re not sure, leave it blank.</p>
 
       <div class="targets">
         <div class="field">
@@ -51,11 +56,10 @@
         </div>
 
         <h3>Micronutrient Targets (required)</h3>
+      <p class="hint">These are required for this assignment. Copy them from the Health Canada calculator.</p>
       <div class="targets2">
-        <h3>Vitamins</h3>
             <div class="field"><label for="t_vita">Vitamin A (µg RAE)</label><input id="t_vita" type="number" min="0" step="1" /></div>
             <div class="field"><label for="t_vitd">Vitamin D (µg)</label><input id="t_vitd" type="number" min="0" step="0.1" /></div>
-        <h3>Minerals</h3>
             <div class="field"><label for="t_calcium">Calcium (mg)</label><input id="t_calcium" type="number" min="0" step="1" /></div>
             <div class="field"><label for="t_iron">Iron (mg)</label><input id="t_iron" type="number" min="0" step="0.1" /></div>
             <div class="field"><label for="t_zinc">Zinc (mg)</label><input id="t_zinc" type="number" min="0" step="0.1" /></div>
