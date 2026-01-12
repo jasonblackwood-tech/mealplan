@@ -35,10 +35,5 @@ This app uses label nutrients when available; otherwise it scales per 100 g.
 - Health Canada DRI targets should be sourced by students from:
   https://health-infobase.canada.ca/nutrition/dietary-reference-intakes-calculator/
 
-
 ## Teacher setup (API key)
-Open `app.js` and paste your key into `FDC_API_KEY`.
-
-
-## Water tracking
-Students can add plain water (mL) with the “Add water” button. Water is compared to the Water target (mL).
+Obtain your API key from https://fdc.nal.usda.gov/api-key-signup
