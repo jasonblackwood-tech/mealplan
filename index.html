@@ -11,25 +11,21 @@
     <h1>1‑Day Meal Plan Checker</h1>
     <p class="sub">
       Build a one‑day meal plan and check it against your targets (from Health Canada’s DRI Calculator).
-      This tool does not save personal data and runs in your browser.
     </p>
-    <p class="links">
-      <a href="https://health-infobase.canada.ca/nutrition/dietary-reference-intakes-calculator/" target="_blank" rel="noopener">Open Health Canada DRI Calculator</a>
-      <span class="sep">•</span>
-      <button id="printBtn" class="btn ghost" type="button">Print summary</button>
-    </p>
+    
   </header>
 
   <main class="wrap grid">
     <section class="card">
-      <h2>Setup</h2>
-
-      <p class="hint">Teacher setup: the USDA FoodData Central API key is built into this app (students do not enter it).</p>
-
-      <hr />
+      <h2>STEP 1: Your Nutrient Targets</h2>
 
       <h3>My Targets (from Health Canada)</h3>
-      <p class="hint">Type the numbers you got from the DRI calculator. If you’re not sure, leave it blank.</p>
+      <p class="links">
+      <a href="https://health-infobase.canada.ca/nutrition/dietary-reference-intakes-calculator/" target="_blank" rel="noopener">Open Health Canada DRI Calculator</a>
+      <span class="sep">•</span>
+      <button id="printBtn" class="btn ghost" type="button">Print summary</button>
+    </p>
+      <p class="hint">Type the numbers you got from the DRI calculator to create the goals for your meal plan. If you’re not sure, leave it blank.</p>
 
       <div class="targets">
         <div class="field">
@@ -54,12 +50,11 @@
           <label for="t_fat">Total fat (g)</label>
           <input id="t_fat" type="number" min="0" step="0.1" />
         </div>
-
-        <h3>Micronutrient Targets (required)</h3>
-      <p class="hint">These are required for this assignment. Copy them from the Health Canada calculator.</p>
-      <div class="targets2">
+           <div class="targets2">
+        <h3>Vitamins</h3>
             <div class="field"><label for="t_vita">Vitamin A (µg RAE)</label><input id="t_vita" type="number" min="0" step="1" /></div>
             <div class="field"><label for="t_vitd">Vitamin D (µg)</label><input id="t_vitd" type="number" min="0" step="0.1" /></div>
+        <h3>Minerals</h3>
             <div class="field"><label for="t_calcium">Calcium (mg)</label><input id="t_calcium" type="number" min="0" step="1" /></div>
             <div class="field"><label for="t_iron">Iron (mg)</label><input id="t_iron" type="number" min="0" step="0.1" /></div>
             <div class="field"><label for="t_zinc">Zinc (mg)</label><input id="t_zinc" type="number" min="0" step="0.1" /></div>
@@ -74,8 +69,9 @@
     </section>
 
     <section class="card">
-      <h2>Add Foods</h2>
-
+      <h2>STEP 2: Add Foods</h2>
+ <p class="hint">Select a meal then type in the name of a food and press "Search." If you're having something cooked try adding verbs like "cooked" or "baked" or "fried" after the ingredient. 
+       If you know the name brand of the food, you can type that name as well.</p>
       <div class="field">
         <label for="meal">Meal</label>
         <select id="meal">
@@ -87,37 +83,38 @@
       </div>
 
       <div class="field">
-        <label for="query">Search for a food (whole foods or branded)</label>
+        <label for="query">Search for a food</label>
         <div class="row">
           <input id="query" type="text" placeholder="Try: banana, Cheerios, milk, pizza…" />
           <button id="searchBtn" class="btn" type="button">Search</button>
         </div>
-        <p class="hint">Tip: branded foods work best when the label has a serving size in grams.</p>
       </div>
 
       
       <div class="row">
         <button id="addWaterBtn" class="btn ghost" type="button">Add water</button>
-        <span class="small">Track plain water separately (mL).</span>
+        <span class="small">How much water will you have with this meal? Give your answer in (mL). Remember: 1000 mL = 1 litre.</span>
       </div>
 
       <div id="results" class="results" aria-live="polite"></div>
     </section>
 
     <section class="card">
-      <h2>My Day of Food</h2>
+      <h2>My Meal Plan</h2>
       <div id="plan" class="plan"></div>
     </section>
 
     <section class="card">
-      <h2>Daily Check</h2>
+      <h2>STEP 3: My Meal Plan Nutrients</h2>
       <p class="hint">
-        “Limits” are everyday caps (like added sugar and saturated fat). “UL” means a tolerable upper intake level for some nutrients.
-      </p>
+        “Limits” are for nutrients we should try to not go too high on every day (like added sugar and saturated fat). “UL” means the "upper limit" or MOST we should probably have each day. Going above the limit every day can have consequences for our health in the long term such as issues with our digestive system, bones, and nervous system, as well as other medical issues like diabetes, heart disease, or stroke. 
+      <br><b>When you are done, press the "COPY" button and paste your meal plan into the document in Google Classoom.</b></p>
       <div id="check" class="check"></div>
       <div class="row">
-        <button id="exportBtn" class="btn ghost" type="button">Copy printable summary</button>
+        <button id="exportBtn" class="btn ghost" type="button">COPY MY MEAL PLAN.</button>
       </div>
+       <p class="hint">
+       Press the "COPY" button and paste your meal plan into the document in Google Classoom.</p>
       <textarea id="exportArea" class="export" readonly></textarea>
     </section>
   </main>
